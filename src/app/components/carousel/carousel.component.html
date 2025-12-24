@@ -1,0 +1,40 @@
+<div class="carousel-container">
+  <!-- Filmstrip Track -->
+  <div class="carousel-track" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
+    <div *ngFor="let slide of slides" class="slide">
+      <div class="slide-visual">
+        <img [src]="slide.visual" [alt]="slide.title">
+      </div>
+      <div class="slide-details">
+        <h3>{{ slide.title }}</h3>
+        <p class="slide-type">{{ slide.type }}</p>
+        <p>{{ slide.description }}</p>
+        <div class="slide-actions">
+          <a *ngIf="slide.liveLink" [href]="slide.liveLink" target="_blank" class="button">View Live</a>
+          <a *ngIf="slide.codeLink" [href]="slide.codeLink" target="_blank" class="button secondary">View Code</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <button class="nav-button prev" (click)="goToPrevious()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+  </button>
+  <button class="nav-button next" (click)="goToNext()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </button>
+
+  <!-- Dot Indicators -->
+  <div class="dots-container">
+    <div *ngFor="let slide of slides; let i = index" 
+         class="dot" 
+         [ngClass]="{'active': i === currentIndex}"
+         (click)="goToSlide(i)">
+    </div>
+  </div>
+</div>

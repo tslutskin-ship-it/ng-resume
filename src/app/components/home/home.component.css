@@ -1,0 +1,260 @@
+:host {
+  display: block;
+  height: 100vh;
+  background-color: #1a1a1a;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+
+.bento-container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: auto 1fr 1fr;
+  grid-template-areas:
+    "lang contact contact contact contact certs certs certs"
+    "security security security security tech tech tech tech"
+    "security security security security tech tech tech tech";
+  gap: 1rem;
+  padding: 1rem;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.bento-box {
+  background-color: #2c2c2c;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+    background-color 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+    color 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+    box-shadow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+    background-image 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* added background-image for potential cross-fades */
+}
+
+.bento-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.tech-resume.expanded {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.tech-resume.expanded h2,
+.tech-resume.expanded p {
+  color: #000000;
+}
+
+.tech-resume {
+  grid-area: tech;
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-resume::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/assets/code.gif');
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.tech-resume:not(.expanded):hover::before {
+  opacity: 1;
+}
+
+.tech-resume .summary-content,
+.tech-resume .showcase-content {
+  position: relative;
+  z-index: 1;
+}
+
+.tech-resume:not(.expanded):hover h2,
+.tech-resume:not(.expanded):hover p {
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+.language-toggle {
+  grid-area: lang;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.language-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Reduced gap */
+  width: 100%;
+  height: 100%;
+  justify-content: center; /* Centered with small gap */
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.05); /* Subtle background */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 0.4rem 0.75rem; /* Slimmer padding */
+  border-radius: 0.75rem; /* Better alignment with 1rem bento corners */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.language-option:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateX(3px);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.language-option img {
+  width: 24px;
+  height: 18px;
+  border-radius: 3px;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.language-option span {
+  flex-grow: 1; /* Push text to fill space or align nicely */
+}
+
+.back-button {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 110;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  color: inherit; /* Inherits text color from parent (white or black) */
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: rgba(128, 128, 128, 0.15);
+  transform: translateX(-3px);
+}
+
+.back-button svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Explicit Button Colors for Contrast */
+.tech-resume .back-button {
+  color: #000000;
+  background-color: rgba(0, 0, 0, 0.05); /* Subtle backing for visibility */
+}
+
+.tech-resume .back-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: translateX(-3px);
+}
+
+.security-resume .back-button,
+.contact .back-button {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.security-resume .back-button:hover,
+.contact .back-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(-3px);
+}
+
+.contact {
+  grid-area: contact;
+}
+
+.certificates {
+  grid-area: certs;
+}
+
+.security-resume {
+  grid-area: security;
+}
+
+.tech-resume {
+  grid-area: tech;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.95rem;
+}
+
+.bento-box p {
+  font-size: 1.3rem;
+}
+
+a {
+  color: #4da6ff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+/* --- Expanding Animation Styles --- */
+
+.bento-box.expanded {
+  position: fixed;
+  inset: 20px;
+  z-index: 100;
+  grid-area: initial !important;
+}
+
+/* Hide original content when expanded */
+.bento-box.expanded .summary-content {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s ease-in-out;
+}
+
+/* Show showcase content when expanded */
+.showcase-content {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Ensure content clears the back button */
+.bento-box.expanded .showcase-content {
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0.5s; /* Wait for expansion animation to finish */
+  padding-top: 4rem; /* Reduced from 5rem */
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto; /* Allow scrolling if content is tall */
+}

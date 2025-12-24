@@ -1,0 +1,80 @@
+<div class="bento-container">
+  <div class="bento-box language-toggle">
+    <div class="language-wrapper">
+      <button class="language-option">
+        <img src="/assets/images/en-flag.svg" alt="English Flag">
+        <span>English</span>
+      </button>
+      <button class="language-option">
+        <img src="/assets/images/de-flag.svg" alt="German Flag">
+        <span>German</span>
+      </button>
+      <button class="language-option">
+        <img src="/assets/images/he-flag.svg" alt="Hebrew Flag">
+        <span>Hebrew</span>
+      </button>
+    </div>
+  </div>
+  <!-- Contact Box -->
+  <div data-box-id="contact" class="bento-box contact" [ngClass]="{'expanded': expandedBox === 'contact'}" #contactBox>
+    <div *ngIf="expandedBox !== 'contact'" class="summary-content">
+      <h2>Contact Me</h2>
+      <p>Let's connect and discuss how I can help.</p>
+      <a href="#" (click)="expandBox('contact', contactBox); $event.preventDefault()">Get in Touch</a>
+    </div>
+    <div *ngIf="expandedBox === 'contact'" class="showcase-content">
+      <button class="back-button" (click)="collapseBox(); $event.stopPropagation()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back</span>
+      </button>
+      <app-contact-form></app-contact-form>
+    </div>
+  </div>
+  <div class="bento-box certificates">
+    <h2>Certificates</h2>
+    <p>Continuously learning and improving my skills.</p>
+    <a href="/certificates">View Certificates</a>
+  </div>
+
+  <!-- Security Resume Box -->
+  <div data-box-id="security" class="bento-box security-resume" [ngClass]="{'expanded': expandedBox === 'security'}" #securityBox>
+    <div *ngIf="expandedBox !== 'security'" class="summary-content">
+      <h2>Armed Security Professional</h2>
+      <p>Protecting communities with vigilance and integrity.</p>
+      <a href="#" (click)="expandBox('security', securityBox); $event.preventDefault()">View Security Resume</a>
+    </div>
+    <div *ngIf="expandedBox === 'security'" class="showcase-content">
+      <button class="back-button" (click)="collapseBox(); $event.stopPropagation()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back</span>
+      </button>
+      <h2>Security Showcase</h2>
+      <p>This is where the detailed security showcase will go.</p>
+    </div>
+  </div>
+
+  <!-- Tech Resume Box -->
+  <div data-box-id="tech" class="bento-box tech-resume" [ngClass]="{'expanded': expandedBox === 'tech'}" #techBox>
+    <div *ngIf="expandedBox !== 'tech'" class="summary-content">
+      <h2>Frontend Developer</h2>
+      <p>Building resilient and user-friendly web applications.</p>
+      <a href="#" (click)="expandBox('tech', techBox); $event.preventDefault()">View Tech Portfolio</a>
+    </div>
+    <div *ngIf="expandedBox === 'tech'" class="showcase-content">
+      <button class="back-button" (click)="collapseBox(); $event.stopPropagation()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back</span>
+      </button>
+      <app-carousel></app-carousel>
+    </div>
+  </div>
+</div>
